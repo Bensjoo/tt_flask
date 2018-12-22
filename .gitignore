@@ -1,3 +1,4 @@
 site.db
 __pycache__/
 testscript.py
+flaskapp/static/profile_pics/*
