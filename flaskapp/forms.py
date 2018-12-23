@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flaskapp.models import User
 
@@ -54,3 +54,8 @@ class UpdateAccountForm(FlaskForm):
             email = User.query.filter_by(email=email.data).first()
             if email:
                 raise ValidationError('email is in use.')
+
+class PostForm(FlaskForm):
+    title = StringField('title',validators=[DataRequired()])
+    content = TextAreaField('content',validators=[DataRequired()])
+    submit = SubmitField('Post')
